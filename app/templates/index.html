@@ -34,6 +34,11 @@
                             {% endfor %}
                         </div>
                     </div>
+                    {% else %}
+                    <div class="alert alert-warning mt-2">
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+                        Не найдено ни одного города по вашему запросу
+                    </div>
                     {% endif %}
                 </form>
 

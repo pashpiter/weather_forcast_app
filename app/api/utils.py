@@ -15,7 +15,7 @@ async def get_city_suggestions(city: str) -> list | None:
         return [
             f'{res["name"]}, {res.get("country")}'
             for res in data.get('results') if res.get("country")
-        ]
+        ] if data.get('results') else None
     except requests.RequestException:
         return
     
