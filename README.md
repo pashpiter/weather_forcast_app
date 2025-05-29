@@ -1,6 +1,6 @@
 # weather_forcast_app
 
-#### Стек: Python, FastAPI, uvicorn, sqlmodel, postgresql, asyncpg
+#### Стек: Python, FastAPI, uvicorn, sqlmodel, postgresql, asyncpg, jinja2
 
 ## О проекте
 Web приложение(сайт), где пользователь вводит название города, и получает прогноз погоды в этом городе на ближайшее время.
