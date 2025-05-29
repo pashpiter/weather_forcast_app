@@ -21,7 +21,9 @@ async def show_weather(
     weather_data = await get_city_weather(city)
     if not weather_data:
         return RedirectResponse('/?error=City+not+found', status_code=302)
-    await create_query(session, city, request.cookies['csrftoken'])
+    await create_query(
+        session, city, request.cookies.get('csrftoken')
+    )
 
     return templates.TemplateResponse(
         'weather.html',

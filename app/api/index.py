@@ -20,8 +20,8 @@ async def home(
     '''Главная страница'''
     suggestions = await get_city_suggestions(city) if city else None
     city_query = await get_latest_city_for_user(
-        session, request.cookies['csrftoken']
-    )
+        session, request.cookies.get('csrftoken')
+    ) if request.cookies.get('csrftoken') else None
     previous_city = city_query.city if city_query else None
     return templates.TemplateResponse(
         'index.html',

@@ -4,7 +4,7 @@ from sqlmodel import Field, SQLModel
 
 
 class CityQueryBase(SQLModel):
-    csrftoken: str = Field(max_length=100)
+    csrftoken: str = Field(max_length=100, nullable=True)
     timestamp: datetime | None = Field(default=datetime.now(), nullable=False)
     city: str = Field(max_length=30)
 
@@ -14,10 +14,6 @@ class CityQuery(CityQueryBase, table=True):
 
 
 class CityQueryCreate(CityQueryBase):
-    pass
-
-
-class CityQueryRead(CityQueryBase):
     pass
 
 
