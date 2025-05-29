@@ -13,7 +13,8 @@ async def get_city_suggestions(city: str) -> list | None:
         response.raise_for_status()
         data = response.json()
         return [
-            f'{res["name"]}, {res["country"]}' for res in data.get('results')
+            f'{res["name"]}, {res.get("country")}'
+            for res in data.get('results') if res.get("country")
         ]
     except requests.RequestException:
         return
@@ -43,7 +44,6 @@ async def get_city_weather(city: str) -> dict | None:
         hourly_data = weather_data['hourly']
         hourly_forecast = []
         t = weather_data['current_weather']['time'][:14] + '00'
-        print(t)
         start_index = hourly_data['time'].index(t)
         for i in range(start_index, start_index+24):
             timestamp = datetime.fromisoformat(hourly_data['time'][i])
@@ -54,7 +54,7 @@ async def get_city_weather(city: str) -> dict | None:
             })
 
         return {
-            'city': f'{data_result["name"]}, {data_result["country"]}',
+            'city': f'{data_result["name"]}, {data_result.get("country")}',
             'current': weather_data.get('current_weather'),
             'hourly': hourly_forecast
         }
